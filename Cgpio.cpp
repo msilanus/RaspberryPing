@@ -6,7 +6,7 @@ using namespace std;
 #define EXPORT 		"export"
 #define DIRECTION 	"direction"
 #define VALUE 		"value"
-#define IN 			"in"
+#define IN 		"in"
 #define OUT 		"out"
 
 
@@ -85,7 +85,7 @@ int Cgpio::ecrire(int value)
 	char value_str[1];
 	if(value==0) value_str[0]='0';
 	else value_str[0]='1';
-
+	//cout << "Ecriture" << endl;
 	if (write(fd, value_str,1)!=1)
 	{
 		cout << "Cgpio::ecrire : Erreur d'ecriture sur " << gpioPath << " : " << value_str << endl;
