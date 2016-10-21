@@ -26,25 +26,22 @@ int Cping::getDistance()
 	Cgpio::ecrire(0);
 	
 	// Attendre le passage a 1 de l'echo
-	t0=clock();
-	//cout << "t0 = " << (unsigned long)t0 << endl;		
+	t0=clock();		
 	while(Cgpio::lire()==0)
 	{
 		// Pas de passage à 1 avant le timeout
-		//if((clock() - t0)/CLOCKS_PER_SEC < TIMEOUT) return -1;
+		if((clock() - t0)/CLOCKS_PER_SEC < TIMEOUT) return -1;
 	}
 	t1=clock();
-	//cout << "t1 = " << (unsigned long)t1 << endl;	
+		
 	// Attendre le retour à 0 de l'echo
-	while(Cgpio::lire()==1 /*&& (clock() - t1)/CLOCKS_PER_SEC < TIMEOUT*/) ;
+	while(Cgpio::lire()==1 && (clock() - t1)/CLOCKS_PER_SEC < TIMEOUT) ;
 	t2=clock();
-	//cout << "t2 = " << (unsigned long)t2 << endl;
+	
 	// Calcul de la duree aller-retour (CLOCKS_PER_SEC : nb de tick/s)
-    	float duration = (((unsigned long)t2)-((unsigned long)t1));
-	duration = duration / CLOCKS_PER_SEC;
-    	// Calcul de la distance (340 m/s trajet aller-retour)
-    	float distance=duration*34000/2;
-	//cout << distance << endl;
+    unsigned long duration = (((unsigned long)t2)-((unsigned long)t1))/CLOCKS_PER_SEC;
+    // Calcul de la distance (340 m/s trajet aller-retour)
+    float distance=duration*34000/2;
 	
 	return distance;
 }
