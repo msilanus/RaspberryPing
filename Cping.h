@@ -10,5 +10,5 @@ class Cping : Cgpio
 	
 	Cping(int gpio);
 	~Cping();	
-	int getDistance();
+	float getDistance();
 };

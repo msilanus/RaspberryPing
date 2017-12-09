@@ -10,7 +10,7 @@ int main()
 	
 	while(1)
 	{		
-		cout << endl << "distance : " << ping.getDistance() << endl;
+		cout << endl << "distance : " << (int)ping.getDistance() << " cm" ;
 		sleep(1);
 	}
 	
