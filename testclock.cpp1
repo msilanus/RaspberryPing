@@ -1,0 +1,15 @@
+#include <iostream>
+#include <chrono>
+#include <unistd.h>
+typedef std::chrono::high_resolution_clock Clock;
+
+int main()
+{
+    auto t1 = Clock::now();
+	usleep(20000);
+    auto t2 = Clock::now();
+    std::cout << "Delta t2-t1: " 
+              << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count()
+              << " nanoseconds" << std::endl;
+}
+
